@@ -1,34 +1,10 @@
 {
-  "builds": [
-    {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/auth.html"
-    },
-    {
-      "src": "/about",
-      "dest": "/about.html"
-    },
-    {
-      "src": "/dashboard",
-      "dest": "/dashboard.html"
-    },
-    {
-      "src": "/reset",
-      "dest": "/reset.html"
-    },
-    {
-      "src": "/ebooks",
-      "dest": "/ebooks.html"
-    },
-    {
-      "src": "/forgot",
-      "dest": "/forgot.html"
-    }
+  "public": "public",
+  "rewrites": [
+    { "source": "/", "destination": "/auth.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/ebooks", "destination": "/ebooks.html" },
+    { "source": "/reset", "destination": "/reset.html" }
   ]
 }
