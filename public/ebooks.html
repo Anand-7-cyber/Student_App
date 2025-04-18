@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Premium Dashboard</title>
+    <style>
+        /* Navigation Bar Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        nav .website-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav .page-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        nav .home-btn {
+            background-color: #ffffff;
+            color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav .home-btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        /* Other styles remain unchanged */
+        #ebooks .ebooks-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .ebook-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ebook-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ebook-item h3 a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .ebook-item h3 a:hover {
+            color: #0056b3;
+        }
+
+        .ebook-item p {
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+  
+        #ebooks .ebooks-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+    
+        .ebook-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .ebook-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        .ebook-item h3 a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+    
+        .ebook-item h3 a:hover {
+            color: #0056b3;
+        }
+    
+        .ebook-item p {
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+        }
+    
+        .btn-primary {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+  
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="website-name">My Website</div>
+
+        <button class="home-btn"  ><a href="dashboard.html">Home</a> </button>
+    </nav>
+
+    <!-- Free Ebooks Section -->
+    <section id="ebooks" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Free Ebooks</h2>
+            <p>Explore a collection of high-quality ebooks available for free. These resources are designed to help you learn new skills and gain valuable knowledge at no cost!</p>
+            <div class="ebooks-list">
+                <!-- Ebook Items... (All 20 ebook items go here as previously mentioned) -->
+            </div>
+            <a href="#" class="btn-primary">Download All Ebooks</a>
+        </div>
+    </section>
+
+    <!-- Free Ebooks Section -->
+    <section id="ebooks" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Free Ebooks</h2>
+            <p>Explore a collection of high-quality ebooks available for free. These resources are designed to help you learn new skills and gain valuable knowledge at no cost!</p>
+            <div class="ebooks-list">
+                <!-- Ebook Item 1 -->
+                <div class="ebook-item">
+                    <h3><a href="https://drive.google.com/file/d/1AhkYuS6u8-SRV72Q1qEFDxt1qaigA1mE/view?usp=drive_link" download>Understanding Web Development</a></h3>
+                    <p>Learn the basics of web development and how to build your first website. Perfect for beginners.</p>
+                </div>
+                <!-- Ebook Item 2 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook2.pdf" download>Mastering JavaScript</a></h3>
+                    <p>Deep dive into JavaScript and how to use it to create dynamic and interactive websites.</p>
+                </div>
+                <!-- Ebook Item 3 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook3.pdf" download>CSS for Beginners</a></h3>
+                    <p>This ebook provides essential knowledge on styling web pages with CSS. A must-read for front-end developers.</p>
+                </div>
+                <!-- Ebook Item 4 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook4.pdf" download>HTML5 Fundamentals</a></h3>
+                    <p>Understand the core concepts of HTML5 and how it shapes modern web pages and applications.</p>
+                </div>
+                <!-- Ebook Item 5 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook5.pdf" download>Responsive Web Design</a></h3>
+                    <p>Learn how to design websites that work seamlessly on all devices, using CSS and media queries.</p>
+                </div>
+                <!-- Ebook Item 6 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook6.pdf" download>Introduction to Node.js</a></h3>
+                    <p>Get started with Node.js, the JavaScript runtime for building fast and scalable applications.</p>
+                </div>
+                <!-- Ebook Item 7 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook7.pdf" download>Front-End Development Essentials</a></h3>
+                    <p>Learn the essential tools and techniques used by modern front-end developers.</p>
+                </div>
+                <!-- Ebook Item 8 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook8.pdf" download>Backend Development with Express.js</a></h3>
+                    <p>Learn how to build server-side applications using Express.js, a powerful Node.js framework.</p>
+                </div>
+                <!-- Ebook Item 9 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook9.pdf" download>Mastering Git and GitHub</a></h3>
+                    <p>Understand version control with Git and how to use GitHub for collaboration and code management.</p>
+                </div>
+                <!-- Ebook Item 10 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook10.pdf" download>PHP for Web Development</a></h3>
+                    <p>Explore the basics of PHP and how it can be used to create dynamic, data-driven websites.</p>
+                </div>
+                <!-- Ebook Item 11 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook11.pdf" download>Building RESTful APIs</a></h3>
+                    <p>Learn how to design and implement RESTful APIs to enable communication between servers and clients.</p>
+                </div>
+                <!-- Ebook Item 12 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook12.pdf" download>Web Security Basics</a></h3>
+                    <p>This ebook covers essential web security practices to keep your web applications safe from attacks.</p>
+                </div>
+                <!-- Ebook Item 13 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook13.pdf" download>Introduction to Databases</a></h3>
+                    <p>Understand the basics of databases and how to interact with them using SQL.</p>
+                </div>
+                <!-- Ebook Item 14 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook14.pdf" download>Building Scalable Applications</a></h3>
+                    <p>Learn strategies for building applications that can scale as your user base grows.</p>
+                </div>
+                <!-- Ebook Item 15 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook15.pdf" download>Introduction to Python</a></h3>
+                    <p>Start learning Python, one of the most versatile and popular programming languages.</p>
+                </div>
+                <!-- Ebook Item 16 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook16.pdf" download>Building Web Apps with React</a></h3>
+                    <p>Learn how to build interactive user interfaces with React, a powerful JavaScript library.</p>
+                </div>
+                <!-- Ebook Item 17 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook17.pdf" download>Web Development Best Practices</a></h3>
+                    <p>Master best practices in web development to write clean, maintainable, and efficient code.</p>
+                </div>
+                <!-- Ebook Item 18 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook18.pdf" download>Mastering SQL</a></h3>
+                    <p>Learn the fundamentals of SQL and how to use it to manage and query databases.</p>
+                </div>
+                <!-- Ebook Item 19 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook19.pdf" download>Introduction to Machine Learning</a></h3>
+                    <p>Get an overview of machine learning concepts and how they can be applied to real-world problems.</p>
+                </div>
+                <!-- Ebook Item 20 -->
+                <div class="ebook-item">
+                    <h3><a href="ebook20.pdf" download>Web Development with Django</a></h3>
+                    <p>Learn how to build robust web applications using Django, a high-level Python framework.</p>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Download All Ebooks</a>
+        </div>
+    </section>
+    <!-- Profile Popup -->
+    <div id="profile-popup" style="display: none;">
+        <div id="popup-content" class="popup-content">
+            <span class="close-btn" onclick="closeProfile()">&times;</span>
+            <h2 class="popup-title">User Profile</h2>
+            <p><strong>Name:</strong> <span id="profile-name" class="profile-detail"></span></p>
+            <p><strong>Email:</strong> <span id="profile-email" class="profile-detail"></span></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MyApp. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

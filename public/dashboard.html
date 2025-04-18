@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Premium Dashboard</title>
+</head>
+<body>
+
+    <!-- Hamburger Button -->
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar">
+        <div class="logo">MyApp</div>
+
+        <div class="section-header">Sections</div>
+        <ul class="sections">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Testimonials</a></li>
+            <li><a href="ebooks.html">ebooks</a></li>
+            <!-- Profile Link in Navigation -->
+            <li><a href="#" onclick="showProfile()" class="profile-link">My Account</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Contact Us / Support</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <div class="main-content">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="container">
+                    <h2 class="section-title">About Us</h2>
+                    <p>Welcome to MyApp! We provide a wide range of professional services designed to help individuals and businesses succeed. From technical tutorials to consulting and free resources, we are committed to helping you grow your skills and business effectively.</p>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="section bg-light">
+                <div class="container">
+                    <h2 class="section-title">Our Services</h2>
+                    <div class="services-list">
+                        <div class="service-item">
+                            <h3>Professional Resources</h3>
+                            <p>Get access to exclusive tutorials, ebooks, and video lessons to boost your professional skills and knowledge.</p>
+                        </div>
+                        <div class="service-item">
+                            <h3>Consulting & Coaching</h3>
+                            <p>Our experts provide personalized consulting to help you take your business or personal skills to the next level.</p>
+                        </div>
+                        <div class="service-item">
+                            <h3>Tech Solutions</h3>
+                            <p>We offer innovative tech solutions ranging from software development to web design, helping businesses stay competitive.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section id="resources" class="section">
+                <div class="container">
+                    <h2 class="section-title">Resources</h2>
+                    <p>Explore our extensive library of resources designed to help you succeed. Whether you're looking for tutorials, guides, or expert advice, we have the tools to support your growth.</p>
+                    <a href="#" class="btn-primary">Explore Resources</a>
+                </div>
+            </section>
+
+            <!-- Free Ebooks Section -->
+            <section id="ebooks" class="section bg-light">
+                <div class="container">
+                    <h2 class="section-title">Free Ebooks</h2>
+                    <p>We offer a collection of high-quality ebooks for free. These resources are designed to help you learn new skills and gain valuable knowledge for free!</p>
+                    <a href="ebooks.html" class="btn-primary">Download Free Ebooks</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Profile Popup -->
+    <div id="profile-popup" style="display: none;">
+        <div id="popup-content" class="popup-content">
+            <span class="close-btn" onclick="closeProfile()">&times;</span>
+            <h2 class="popup-title">User Profile</h2>
+            <p><strong>Name:</strong> <span id="profile-name" class="profile-detail"></span></p>
+            <p><strong>Email:</strong> <span id="profile-email" class="profile-detail"></span></p>
+        </div>
+    </div>
+
+    
+<!-- Sidebar -->
+<div id="sidebar">
+    <button id="close-btn" onclick="closeSidebar()">×</button>
+    <!-- menu items here -->
+  </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MyApp. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

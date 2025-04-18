@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Auth Portal</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+      width: 350px;
+      padding: 40px 30px;
+      color: #fff;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ee0979, #ff6a00);
+    }
+
+    .toggle-btn {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ccc;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
+    }
+
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container fade-in">
+    <h2 id="form-title">Login</h2>
+
+    <!-- Login Form -->
+    <form id="login-form" action="/login" method="POST">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signup-form" action="/signup" method="POST" style="display: none;">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input  id="email" type="email" name="email" placeholder="Email" required />
+      <input id="password" type="password" name="password" placeholder="Password" required />
+      <button type="submit">Signup</button>
+    </form>
+
+    <span class="toggle-btn" id="toggle-btn">Don't have an account? Signup</span>
+
+    <!-- Forgot Password Button -->
+    <a href="forgot.html"
+      style="color: #ccc; text-decoration: underline; font-size: 14px; display: block; margin-top: 10px; text-align: center;">
+      Forgot Password?
+    </a>
+  </div>
+<!-- CDN -->
+<!-- Correct SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  document.getElementById('login-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const email = document.querySelector('#login-form input[name="email"]').value;
+    const password = document.querySelector('#login-form input[name="password"]').value;
+
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else {
+        const data = await response.json();
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: data.message || 'Invalid email or password'
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Something went wrong!'
+      });
+    }
+  });
+</script>
+
+
+</body>
+
+</html>
