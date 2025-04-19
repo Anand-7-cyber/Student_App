@@ -1,10 +1,9 @@
 const bcrypt = require('bcrypt');
 
-const loginUser = async (pool, email, password) => {
+const loginUser = async (db, email, password) => {
   try {
     // Step 1: Find user by email
-    const result = await pool.query('SELECT * FROM usersmain WHERE email = $1', [email]);
-    const results = result.rows;
+    const [results] = await db.promise().query('SELECT * FROM usersmain WHERE email = ?', [email]);
 
     // Step 2: If user found, compare password
     if (results.length === 0) {

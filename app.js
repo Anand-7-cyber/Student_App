@@ -1,8 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const { Pool } = require('pg'); // PostgreSQL client
-
+const mysql = require('mysql2');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt'); 
@@ -14,25 +13,16 @@ const { createUser } = require('./signup');
 const app = express();
 const PORT = 3000;
 
-// PostgreSQL pool setup
-const pool = new Pool({
+const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 5432,
+  database: process.env.DB_NAME
 });
-
-// Middleware to handle PostgreSQL queries
-const dbQuery = async (query, params) => {
-  const client = await pool.connect();
-  try {
-    const result = await client.query(query, params);
-    return result;
-  } finally {
-    client.release();
-  }
-};
+db.connect((err) => {
+  if (err) throw err;
+  console.log('Connected to the database!');
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -72,7 +62,7 @@ app.get('/dashboard', (req, res) => {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await loginUser(pool, email, password); // PostgreSQL login
+    const user = await loginUser(db, email, password);
     if (!user) return res.status(400).json({ message: 'Invalid credentials' });
 
     req.session.user = { id: user.id, email: user.email };
@@ -85,7 +75,7 @@ app.post('/login', async (req, res) => {
 app.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const newUser = await createUser(pool, name, email, password); // PostgreSQL signup
+    const newUser = await createUser(db, name, email, password); 
 
     if (newUser) res.redirect('/auth');
     else res.status(400).json({ message: 'Signup failed. Please try again.' });
@@ -110,76 +100,79 @@ app.post('/forgot', (req, res) => {
   const token = crypto.randomBytes(20).toString('hex');
   const expiry = Date.now() + 3600000;
 
-  const query = 'UPDATE usersmain SET reset_token = $1, token_expiry = $2 WHERE email = $3';
-  dbQuery(query, [token, expiry, email])
-    .then(result => {
-      if (result.rowCount === 0) return res.status(404).send('Email not found');
+  const query = 'UPDATE usersmain SET reset_token = ?, token_expiry = ? WHERE email = ?';
+  db.query(query, [token, expiry, email], (err, result) => {
+    if (err) return res.status(500).send('Database error');
 
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.EMAIL_PASSWORD
-        }
-      });
+    if (result.affectedRows === 0) {
+      return res.status(404).send('Email not found');
+    }
 
-      const resetLink = `http://localhost:3000/reset/${token}`;
-      const mailOptions = {
-        from: `"Support Team" <${process.env.EMAIL}>`,
-        to: email,
-        subject: 'Reset Your Password',
-        html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`
-      };
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASSWORD
+      }
+    });
 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) return res.status(500).send('Failed to send email');
-        res.send('Reset link sent to your email');
-      });
-    })
-    .catch(err => res.status(500).send('Database error'));
+    const resetLink = `http://localhost:3000/reset/${token}`;
+    const mailOptions = {
+      from: `"Support Team" <${process.env.EMAIL}>`,
+      to: email,
+      subject: 'Reset Your Password',
+      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) return res.status(500).send('Failed to send email');
+      res.send('Reset link sent to your email');
+    });
+  });
 });
 
 app.get('/reset/:token', (req, res) => {
   const token = req.params.token;
-  const query = 'SELECT * FROM usersmain WHERE reset_token = $1 AND token_expiry > $2';
-  dbQuery(query, [token, Date.now()])
-    .then(results => {
-      if (results.rowCount === 0) return res.status(400).send('Invalid or expired token');
-      res.sendFile(path.join(__dirname, 'public', 'reset.html'));
-    })
-    .catch(err => res.status(500).send('Database error'));
+  const query = 'SELECT * FROM usersmain WHERE reset_token = ? AND token_expiry > ?';
+  db.query(query, [token, Date.now()], (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(400).send('Invalid or expired token');
+    }
+    res.sendFile(path.join(__dirname, 'public', 'reset.html'));
+  });
 });
 
 app.post('/reset/:token', async (req, res) => {
   const token = req.params.token;
   const { password } = req.body;
 
-  const query = 'SELECT * FROM usersmain WHERE reset_token = $1 AND token_expiry > $2';
-  dbQuery(query, [token, Date.now()])
-    .then(async results => {
-      if (results.rowCount === 0) return res.status(400).send('Invalid or expired token');
+  const query = 'SELECT * FROM usersmain WHERE reset_token = ? AND token_expiry > ?';
+  db.query(query, [token, Date.now()], async (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(400).send('Invalid or expired token');
+    }
 
-      const userId = results.rows[0].id;
-      const hashedPassword = await bcrypt.hash(password, 10);
+    const userId = results[0].id;
+    const hashedPassword = await bcrypt.hash(password, 10); 
 
-      const updateQuery = 'UPDATE usersmain SET password = $1, reset_token = NULL, token_expiry = NULL WHERE id = $2';
-      dbQuery(updateQuery, [hashedPassword, userId])
-        .then(() => res.send('Password reset successful'))
-        .catch(updateErr => res.status(500).send('Error updating password'));
-    })
-    .catch(err => res.status(500).send('Database error'));
+    const updateQuery = 'UPDATE usersmain SET password = ?, reset_token = NULL, token_expiry = NULL WHERE id = ?';
+    db.query(updateQuery, [hashedPassword, userId], (updateErr) => {
+      if (updateErr) return res.status(500).send('Error updating password');
+      res.send('Password reset successful');
+    });
+  });
 });
 
 app.get('/user-info', (req, res) => {
   if (!req.session.user) return res.status(401).json({ message: 'Not logged in' });
 
-  const query = 'SELECT name, email FROM usersmain WHERE id = $1';
-  dbQuery(query, [req.session.user.id])
-    .then(results => {
-      if (results.rowCount === 0) return res.status(404).json({ message: 'User not found' });
-      res.json(results.rows[0]);
-    })
-    .catch(err => res.status(500).json({ message: 'DB error' }));
+  const query = 'SELECT name, email FROM usersmain WHERE id = ?';
+  db.query(query, [req.session.user.id], (err, results) => {
+    if (err) return res.status(500).json({ message: 'DB error' });
+    if (results.length === 0) return res.status(404).json({ message: 'User not found' });
+
+    res.json(results[0]);
+  });
 });
 
 app.listen(PORT, () => {
