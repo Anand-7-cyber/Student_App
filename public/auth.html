@@ -136,7 +136,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  document.getElementById('login-form').addEventListener('submit', async function (e) {
+    // Login Form Submission
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const email = document.querySelector('#login-form input[name="email"]').value;
@@ -165,6 +166,60 @@
         title: 'Server Error',
         text: 'Something went wrong!'
       });
+    }
+  });
+
+  // Signup Form Submission
+  document.getElementById('signup-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const name = document.querySelector('#signup-form input[name="name"]').value;
+    const email = document.querySelector('#signup-form input[name="email"]').value;
+    const password = document.querySelector('#signup-form input[name="password"]').value;
+
+    try {
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else {
+        const data = await response.json();
+        Swal.fire({
+          icon: 'error',
+          title: 'Signup Failed',
+          text: data.message || 'Something went wrong'
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Could not connect to server'
+      });
+    }
+  });
+
+  // Toggle between Login and Signup forms
+  const toggleBtn = document.getElementById('toggle-btn');
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const formTitle = document.getElementById('form-title');
+
+  toggleBtn.addEventListener('click', () => {
+    if (signupForm.style.display === 'none') {
+      signupForm.style.display = 'block';
+      loginForm.style.display = 'none';
+      formTitle.innerText = 'Signup';
+      toggleBtn.innerText = 'Already have an account? Login';
+    } else {
+      signupForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      formTitle.innerText = 'Login';
+      toggleBtn.innerText = "Don't have an account? Signup";
     }
   });
 </script>
