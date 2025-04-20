@@ -1,0 +1,8 @@
+{
+    "name": "my-cf-worker",
+    "compatibility_date": "2025-04-20",
+    "assets": {
+      "directory": "./public"
+    }
+  }
+  
