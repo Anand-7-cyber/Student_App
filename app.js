@@ -1,18 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const mysql = require('mysql2');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const bcrypt = require('bcrypt'); 
-require('dotenv').config();
+const bcrypt = require('bcrypt');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-const { loginUser } = require('./login'); 
-const { createUser } = require('./signup'); 
+const { loginUser } = require('./login');
+const { createUser } = require('./signup');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
+// MySQL Connection
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -25,6 +28,9 @@ db.connect((err) => {
   console.log('Connected to the database!');
 });
 
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -36,12 +42,12 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
   next();
 });
 
+// Routes
 app.get('/', (req, res) => {
   if (req.session.user) {
     res.redirect('/dashboard');
@@ -76,8 +82,7 @@ app.post('/login', async (req, res) => {
 app.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const newUser = await createUser(db, name, email, password); 
-
+    const newUser = await createUser(db, name, email, password);
     if (newUser) res.redirect('/auth');
     else res.status(400).json({ message: 'Signup failed. Please try again.' });
   } catch (error) {
@@ -92,78 +97,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.get('/forgot', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'forgot.html'));
-});
-
-app.post('/forgot', (req, res) => {
-  const { email } = req.body;
-  const token = crypto.randomBytes(20).toString('hex');
-  const expiry = Date.now() + 3600000;
-
-  const query = 'UPDATE usersmain SET reset_token = ?, token_expiry = ? WHERE email = ?';
-  db.query(query, [token, expiry, email], (err, result) => {
-    if (err) return res.status(500).send('Database error');
-
-    if (result.affectedRows === 0) {
-      return res.status(404).send('Email not found');
-    }
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD
-      }
-    });
-
-    const resetLink = `http://localhost:3000/reset/${token}`;
-    const mailOptions = {
-      from: `"Support Team" <${process.env.EMAIL}>`,
-      to: email,
-      subject: 'Reset Your Password',
-      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) return res.status(500).send('Failed to send email');
-      res.send('Reset link sent to your email');
-    });
-  });
-});
-
-app.get('/reset/:token', (req, res) => {
-  const token = req.params.token;
-  const query = 'SELECT * FROM usersmain WHERE reset_token = ? AND token_expiry > ?';
-  db.query(query, [token, Date.now()], (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(400).send('Invalid or expired token');
-    }
-    res.sendFile(path.join(__dirname, 'public', 'reset.html'));
-  });
-});
-
-app.post('/reset/:token', async (req, res) => {
-  const token = req.params.token;
-  const { password } = req.body;
-
-  const query = 'SELECT * FROM usersmain WHERE reset_token = ? AND token_expiry > ?';
-  db.query(query, [token, Date.now()], async (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(400).send('Invalid or expired token');
-    }
-
-    const userId = results[0].id;
-    const hashedPassword = await bcrypt.hash(password, 10); 
-
-    const updateQuery = 'UPDATE usersmain SET password = ?, reset_token = NULL, token_expiry = NULL WHERE id = ?';
-    db.query(updateQuery, [hashedPassword, userId], (updateErr) => {
-      if (updateErr) return res.status(500).send('Error updating password');
-      res.send('Password reset successful');
-    });
-  });
-});
-
+// User Info
 app.get('/user-info', (req, res) => {
   if (!req.session.user) return res.status(401).json({ message: 'Not logged in' });
 
@@ -176,6 +110,44 @@ app.get('/user-info', (req, res) => {
   });
 });
 
+// Contact Form Handler
+app.post('/contact', async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.MINDORA_EMAIL,
+      pass: process.env.MINDORA_PASSWORD
+    }
+  });
+
+
+  const mailOptions = {
+    from: email,  // User ka email address jo form mein dala
+    to: process.env.MINDORA_EMAIL,  // Aapka email address (receiver address)
+    replyTo: email,  // Agar user reply kare, toh uska email address
+    subject: `New Contact: ${subject}`,
+    html: `
+      <h2>Mindora Contact Form</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `
+  };
+  
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Your message has been sent successfully!' });
+  } catch (err) {
+    console.error('Email failed:', err);
+    res.status(500).json({ error: 'Something went wrong. Please try again later.' });
+  }
+});
+
+// Start Server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

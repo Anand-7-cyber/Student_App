@@ -9,5 +9,24 @@
     "mysql2": "^3.14.0",
     "nodemailer": "^6.10.1",
     "pg": "^8.14.1"
-  }
+  },
+  "name": "mysqlmainpractice",
+  "version": "1.0.0",
+  "description": "\"# myapp\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anand-7-cyber/Student_App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Anand-7-cyber/Student_App/issues"
+  },
+  "homepage": "https://github.com/Anand-7-cyber/Student_App#readme"
 }
