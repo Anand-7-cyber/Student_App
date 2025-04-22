@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Mindora</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Features Section CSS */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 40px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #007bff;
+            color: white;
+        }
+        nav .website-name {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        nav .home-btn {
+            background-color: #ffffff;
+            color: #007bff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        nav .home-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .features {
+            background-color: #f4f7fc;
+            padding: 60px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .features h2 {
+            font-size: 3rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 40px;
+            animation: slideInFromTop 1.5s ease-out;
+        }
+
+        .feature-cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 22%;
+            min-width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="website-name">Mindora</div>
+        <button class="home-btn"><a href="dashboard.html" style="color: inherit; text-decoration: none;">Home</a></button>
+    </nav>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Our Amazing Features</h2>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Fast and Reliable</h3>
+                    <p>We provide lightning-fast services, ensuring you never have to wait long for what you need. Our reliability ensures that you can always count on us.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>24/7 Customer Support</h3>
+                    <p>Our customer support is always available, 24/7. No matter when you need help, we are just a message away, ready to assist with anything you need.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure and Safe</h3>
+                    <p>We prioritize your security. All your data is kept secure with the highest encryption standards to ensure that you are safe at all times.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Fully Customizable</h3>
+                    <p>Our services are completely customizable to meet your needs. You can adjust features, settings, and more to make sure everything fits perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Mindora. All rights reserved.</p>
+    </footer>
+</body>
+</html>

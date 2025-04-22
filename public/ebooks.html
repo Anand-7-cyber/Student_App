@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +21,7 @@
             padding: 15px 30px;
             background-color: #007bff;
             color: white;
+            animation: fadeIn 1s ease-out;
         }
 
         nav .website-name {
@@ -35,6 +43,7 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s ease;
+            animation: buttonSlideIn 0.5s ease-out;
         }
 
         nav .home-btn:hover {
@@ -42,12 +51,33 @@
             color: white;
         }
         
-        /* Other styles remain unchanged */
+        /* Animation for fade-in effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Button sliding animation */
+        @keyframes buttonSlideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Ebook Section Styles */
         #ebooks .ebooks-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
             margin-top: 20px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .ebook-item {
@@ -56,6 +86,8 @@
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
         }
 
         .ebook-item:hover {
@@ -91,67 +123,25 @@
             font-weight: bold;
             margin-top: 20px;
             transition: background-color 0.3s ease;
+            animation: buttonSlideIn 0.5s ease-out;
         }
 
         .btn-primary:hover {
             background-color: #0056b3;
         }
-  
-        #ebooks .ebooks-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-    
-        .ebook-item {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-    
-        .ebook-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-    
-        .ebook-item h3 a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-    
-        .ebook-item h3 a:hover {
-            color: #0056b3;
-        }
-    
-        .ebook-item p {
-            font-size: 14px;
-            color: #333;
-            margin-top: 10px;
-        }
-    
-        .btn-primary {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-    
-        .btn-primary:hover {
-            background-color: #0056b3;
+
+        /* Animation for fade-in-up */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
-  
 </head>
 
 <body>
@@ -159,7 +149,7 @@
     <nav>
         <div class="website-name">Mindora</div>
 
-        <button class="home-btn"  ><a href="dashboard.html">Home</a> </button>
+        <button class="home-btn"><a href="dashboard.html">Home</a></button>
     </nav>
 
     <!-- Free Ebooks Section -->
@@ -168,29 +158,17 @@
             <h2 class="section-title">Free Ebooks</h2>
             <p>Explore a collection of high-quality ebooks available for free. These resources are designed to help you learn new skills and gain valuable knowledge at no cost!</p>
             <div class="ebooks-list">
-                <!-- Ebook Items... (All 20 ebook items go here as previously mentioned) -->
-            </div>
-            <a href="#" class="btn-primary">Download All Ebooks</a>
-        </div>
-    </section>
-
-    <!-- Free Ebooks Section -->
-    <section id="ebooks" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Free Ebooks</h2>
-            <p>Explore a collection of high-quality ebooks available for free. These resources are designed to help you learn new skills and gain valuable knowledge at no cost!</p>
-            <div class="ebooks-list">
-                <!-- Ebook Item 1 -->
+                <!-- Ebook Items -->
                 <div class="ebook-item">
                     <h3><a href="https://drive.google.com/file/d/1AhkYuS6u8-SRV72Q1qEFDxt1qaigA1mE/view?usp=drive_link" download>Understanding Web Development</a></h3>
                     <p>Learn the basics of web development and how to build your first website. Perfect for beginners.</p>
                 </div>
-                <!-- Ebook Item 2 -->
                 <div class="ebook-item">
                     <h3><a href="ebook2.pdf" download>Mastering JavaScript</a></h3>
                     <p>Deep dive into JavaScript and how to use it to create dynamic and interactive websites.</p>
                 </div>
-                <!-- Ebook Item 3 -->
+                <!-- More ebook items here... -->
+                 <!-- Ebook Item 3 -->
                 <div class="ebook-item">
                     <h3><a href="ebook3.pdf" download>CSS for Beginners</a></h3>
                     <p>This ebook provides essential knowledge on styling web pages with CSS. A must-read for front-end developers.</p>
@@ -281,25 +259,16 @@
                     <p>Learn how to build robust web applications using Django, a high-level Python framework.</p>
                 </div>
             </div>
+            </div>
             <a href="#" class="btn-primary">Download All Ebooks</a>
         </div>
     </section>
-    <!-- Profile Popup -->
-    <div id="profile-popup" style="display: none;">
-        <div id="popup-content" class="popup-content">
-            <span class="close-btn" onclick="closeProfile()">&times;</span>
-            <h2 class="popup-title">User Profile</h2>
-            <p><strong>Name:</strong> <span id="profile-name" class="profile-detail"></span></p>
-            <p><strong>Email:</strong> <span id="profile-email" class="profile-detail"></span></p>
-        </div>
-    </div>
+   <!-- Footer -->
+   <footer>
+    <p>&copy; 2025 Mindora. All rights reserved.</p>
+</footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Mindora. All rights reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="dashboard.js"></script>
+<!-- Scripts -->
+<script src="dashboard.js"></script>
 </body>
 </html>
