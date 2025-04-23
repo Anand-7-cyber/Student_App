@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mindora Resources</title>
+  <style>
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f9ff;
+      color: #333;
+    }
+    footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #007bff;
+      color: white;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    nav .website-name {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    nav .home-btn {
+      background-color: #ffffff;
+      color: #007bff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav .home-btn:hover {
+      background-color: #0056b3;
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    nav .home-btn a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .content {
+      padding: 40px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .content h1 {
+      font-size: 36px;
+      color: #007bff;
+    }
+
+    .content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .resource-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.25);
+    }
+
+    .resource-card h3 {
+      color: #0056b3;
+    }
+
+    .resource-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .resource-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="website-name">Mindora</div>
+    <button class="home-btn">
+      <a href="dashboard.html">Home</a>
+    </button>
+  </nav>
+
+  <div class="content">
+    <h1>Top Resources</h1>
+    <p>Explore 20+ amazing tools to boost your productivity, learning, and creativity.</p>
+
+    <div class="resources-grid">
+
+      <!-- Repeatable Cards -->
+      <div class="resource-card"><h3>Notion</h3><p>Ultimate tool for notes, task management, and collaboration.</p><a href="https://www.notion.so" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Trello</h3><p>Visual board to manage personal & team projects.</p><a href="https://trello.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Grammarly</h3><p>Improve writing with grammar & tone suggestions.</p><a href="https://www.grammarly.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Google Calendar</h3><p>Plan tasks and set deadlines like a pro.</p><a href="https://calendar.google.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Coursera</h3><p>Learn from top universities worldwide.</p><a href="https://www.coursera.org" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Khan Academy</h3><p>Free learning for school, college & beyond.</p><a href="https://www.khanacademy.org" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Canva</h3><p>Design presentations, resumes, & more easily.</p><a href="https://www.canva.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Figma</h3><p>Collaborative design tool for UI/UX projects.</p><a href="https://www.figma.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>LinkedIn Learning</h3><p>Courses to upskill in tech, design, business.</p><a href="https://www.linkedin.com/learning" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>FreeCodeCamp</h3><p>100% free courses for coding and dev skills.</p><a href="https://www.freecodecamp.org" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>W3Schools</h3><p>Learn web development basics with ease.</p><a href="https://www.w3schools.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Udemy</h3><p>Affordable courses on almost any topic.</p><a href="https://www.udemy.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Medium</h3><p>Read insightful blogs from experts.</p><a href="https://medium.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Todoist</h3><p>Daily task manager for better productivity.</p><a href="https://www.todoist.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>RescueTime</h3><p>Analyze how you spend time on your devices.</p><a href="https://www.rescuetime.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Zoom</h3><p>Video meetings for remote learning & work.</p><a href="https://zoom.us" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Loom</h3><p>Record quick screen videos for feedback or tutorials.</p><a href="https://www.loom.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>GitHub</h3><p>Host and share code projects with the world.</p><a href="https://github.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>CodePen</h3><p>Front-end playground to test HTML/CSS/JS.</p><a href="https://codepen.io" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Pixabay</h3><p>Free stock images for creative projects.</p><a href="https://pixabay.com" target="_blank">Visit</a></div>
+      <div class="resource-card"><h3>Jira</h3><p>Advanced project management for teams.</p><a href="https://www.atlassian.com/software/jira" target="_blank">Visit</a></div>
+
+    </div>
+  </div>
+
+ <!-- Footer -->
+ <footer>
+    <p>&copy; 2025 Mindora. All rights reserved.</p>
+</footer>
+</body>
+</html>

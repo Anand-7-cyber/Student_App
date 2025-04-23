@@ -124,6 +124,7 @@
       <input id="password" type="password" name="password" placeholder="Password" required />
       <button type="submit">Signup</button>
     </form>
+  
 
     <span class="toggle-btn" id="toggle-btn">Don't have an account? Signup</span>
 
@@ -224,6 +225,14 @@
       toggleBtn.innerText = "Don't have an account? Signup";
     }
   });
+  
+  if (sessionStorage.getItem("userLoggedIn")) {
+    window.location.href = "/dashboard";
+  }
+
+
+
+  
 </script>
 
 

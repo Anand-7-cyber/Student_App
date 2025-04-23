@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mindora - Our Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+
+    /* --- YOUR EXACT NAV CSS START --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #007bff;
+      color: white;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    nav .website-name {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav .home-btn {
+      background-color: #ffffff;
+      color: #007bff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav .home-btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    /* --- YOUR NAV CSS END --- */
+
+    nav .home-btn a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #001f3f;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .service-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card h3 {
+      color: #001f3f;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+/* 
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    } */
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="website-name">Mindora</div>
+    <button class="home-btn">
+      <a href="dashboard.html">Home</a>
+    </button>
+  </nav>
+
+  <header>
+    <h1>Our Services</h1>
+    <p>Explore everything Mindora offers to help you grow your career and skills.</p>
+  </header>
+
+  <div class="services-container">
+    <div class="service-card"><h3>Career Guidance</h3><p>One-on-one mentoring and direction for your dream career path.</p></div>
+    <div class="service-card"><h3>Resume Support</h3><p>Craft a professional resume that stands out to recruiters.</p></div>
+    <div class="service-card"><h3>Free Courses</h3><p>Access to high-quality, free courses on trending topics.</p></div>
+    <div class="service-card"><h3>Study Materials</h3><p>Notes, PDFs, and guides to help you ace your subjects.</p></div>
+    <div class="service-card"><h3>Skill Tests</h3><p>Challenge yourself with quizzes to measure your strengths.</p></div>
+    <div class="service-card"><h3>Project Ideas</h3><p>Get cool ideas and build real-world projects for your portfolio.</p></div>
+    <div class="service-card"><h3>Internship Support</h3><p>Guidance and links to real internships for students and freshers.</p></div>
+    <div class="service-card"><h3>Certification Help</h3><p>Find and apply for verified certification programs for free.</p></div>
+    <div class="service-card"><h3>Career News</h3><p>Stay updated with the latest trends, exams and job alerts.</p></div>
+    <div class="service-card"><h3>Mock Interviews</h3><p>Practice interviews to boost confidence and performance.</p></div>
+    <div class="service-card"><h3>Scholarships Info</h3><p>Discover national & international scholarship opportunities.</p></div>
+    <div class="service-card"><h3>Hackathon Alerts</h3><p>Stay in the loop for upcoming coding competitions & events.</p></div>
+    <div class="service-card"><h3>Government Exams</h3><p>Resources and guidance for UPSC, SSC, Banking & more.</p></div>
+    <div class="service-card"><h3>Portfolio Tips</h3><p>Learn how to build and design a standout online portfolio.</p></div>
+    <div class="service-card"><h3>Workshops</h3><p>Attend live sessions from experts to sharpen your skills.</p></div>
+    <div class="service-card"><h3>LinkedIn Profile Help</h3><p>Make your LinkedIn profile recruiter-ready.</p></div>
+    <div class="service-card"><h3>Tech Blogs</h3><p>Read insightful articles written by developers and experts.</p></div>
+    <div class="service-card"><h3>Community Forum</h3><p>Discuss doubts, ideas and get help from fellow learners.</p></div>
+    <div class="service-card"><h3>Exam Notes</h3><p>Concise and exam-focused notes for fast revision.</p></div>
+    <div class="service-card"><h3>Mentorship Program</h3><p>Join our mentorship network for long-term career support.</p></div>
+  </div>
+
+ <!-- Footer -->
+ <footer>
+    <p>&copy; 2025 Mindora. All rights reserved.</p>
+</footer>
+</body>
+</html>

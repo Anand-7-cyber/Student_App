@@ -41,11 +41,15 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Cache control for logged-in pages
 app.use((req, res, next) => {
-  res.set("Cache-Control", "no-store");
+  if (req.session && req.session.user) {
+    res.set("Cache-Control", "no-store");
+  }
   next();
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', (req, res) => {
@@ -109,6 +113,13 @@ app.get('/user-info', (req, res) => {
     res.json(results[0]);
   });
 });
+app.get('/', (req, res) => {
+  if (req.session.user) {
+    res.redirect('/dashboard');
+  } else {
+    res.redirect('/auth');
+  }
+});
 
 // Contact Form Handler
 app.post('/contact', async (req, res) => {
@@ -122,11 +133,10 @@ app.post('/contact', async (req, res) => {
     }
   });
 
-
   const mailOptions = {
-    from: email,  // User ka email address jo form mein dala
-    to: process.env.MINDORA_EMAIL,  // Aapka email address (receiver address)
-    replyTo: email,  // Agar user reply kare, toh uska email address
+    from: email,
+    to: process.env.MINDORA_EMAIL,
+    replyTo: email,
     subject: `New Contact: ${subject}`,
     html: `
       <h2>Mindora Contact Form</h2>
@@ -136,7 +146,6 @@ app.post('/contact', async (req, res) => {
       <p><strong>Message:</strong> ${message}</p>
     `
   };
-  
 
   try {
     await transporter.sendMail(mailOptions);

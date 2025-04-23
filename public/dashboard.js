@@ -77,3 +77,7 @@ function closeSidebar() {
   document.getElementById("sidebar").classList.remove("active");
   document.getElementById("hamburger").style.display = "block";
 }
+
+
+
+

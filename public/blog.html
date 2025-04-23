@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mindora Blog</title>
+  <style>
+    /* Animations */
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Base Styling */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fcff;
+      color: #333;
+    }
+
+    nav {
+      background-color: #007bff;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideIn 1s ease-out;
+    }
+
+    .website-name {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .home-btn {
+      background-color: #ffffff;
+      color: #007bff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .home-btn:hover {
+      background-color: #0056b3;
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .home-btn a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .blog-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 50px 30px;
+    }
+
+    .blog-title {
+      font-size: 36px;
+      color: #007bff;
+      margin-bottom: 10px;
+      animation: fadeUp 1.2s ease-in;
+    }
+
+    .blog-meta {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 30px;
+      animation: fadeUp 1.4s ease-in;
+    }
+
+    .blog-content {
+      font-size: 18px;
+      line-height: 1.7;
+      animation: fadeUp 1.6s ease-in;
+    }
+
+    .blog-content p {
+      margin-bottom: 20px;
+    }
+
+    .blog-content h2 {
+      color: #0056b3;
+      margin-top: 40px;
+    }
+    footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="website-name">Mindora</div>
+    <button class="home-btn"><a href="dashboard.html">Home</a></button>
+  </nav>
+
+  <div class="blog-container">
+    <h1 class="blog-title">How to Stay Productive While Learning New Skills</h1>
+    <div class="blog-meta">By Anand Kumar Rai • April 23, 2025</div>
+
+    <div class="blog-content">
+      <p>In today’s fast-paced world, learning new skills is essential. But balancing learning with your daily life can be tricky. Whether you're a student, a freelancer, or a full-time employee — staying productive matters.</p>
+
+      <h2>1. Set Clear Goals</h2>
+      <p>Before starting any course or tutorial, define what success means for you. Want to learn web development? Break it down into HTML, CSS, JS, and projects.</p>
+
+      <h2>2. Use Tools That Help</h2>
+      <p>Apps like Notion, Trello, and Google Calendar can structure your routine. Time-blocking your day is one of the easiest ways to get things done without stress.</p>
+
+      <h2>3. Take Breaks</h2>
+      <p>Burnout is real. Follow the Pomodoro Technique — 25 minutes work, 5 minutes break. After 4 sessions, take a longer 15-minute break.</p>
+
+      <h2>4. Track Your Progress</h2>
+      <p>Seeing your growth keeps you motivated. Maintain a journal, or use habit tracking apps to see how consistent you’ve been.</p>
+
+      <h2>5. Celebrate Small Wins</h2>
+      <p>Finished your first coding project? Celebrate it! Each step forward is important, and recognizing progress builds confidence.</p>
+
+      <p>Remember, learning is a journey. Don’t rush — enjoy every step. Mindora is here to support you along the way 💙.</p>
+    </div>
+  </div>
+
+ <!-- Footer -->
+ <footer>
+    <p>&copy; 2025 Mindora. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

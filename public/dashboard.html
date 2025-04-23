@@ -21,15 +21,15 @@
             <li><a href="#">Home</a></li>
             <li><a href="features.html">Features</a></li>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="services.html">Services</a></li>
             <li><a href="#">Pricing</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Testimonials</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="testimonlas.html">Testimonials</a></li>
             <li><a href="ebooks.html">ebooks</a></li>
             <!-- Profile Link in Navigation -->
             <li><a href="#" onclick="showProfile()" class="profile-link">My Account</a></li>
-            <li><a href="#">Resources</a></li>
+            <li><a href="resources.html">Resources</a></li>
             <li><a href="contact.html">Contact Us / Support</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
@@ -72,7 +72,7 @@
                 <div class="container">
                     <h2 class="section-title">Resources</h2>
                     <p>Explore our extensive library of resources designed to help you succeed. Whether you're looking for tutorials, guides, or expert advice, we have the tools to support your growth.</p>
-                    <a href="#" class="btn-primary">Explore Resources</a>
+                    <a href="resources.html" class="btn-primary">Explore Resources</a>
                 </div>
             </section>
 
@@ -109,7 +109,36 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="dashboard.js"></script>
+    <script src="dashboard.js">
+        //   if (window.history && window.history.pushState) {
+        //     window.history.pushState(null, null, window.location.href);
+        //     window.onpopstate = function () {
+        //         // Disable the back button action
+        //         window.history.pushState(null, null, window.location.href);
+        //     };
+        // }
+
+        // // Optional: Disable the back and forward buttons in the browser
+        // window.onload = function() {
+        //     setTimeout(function() {
+        //         window.history.forward();
+        //     }, 0);
+        // }
+        
+  if (!sessionStorage.getItem("userLoggedIn")) {
+    window.location.href = "/auth";
+  }
+
+  // Prevent back navigation to the login page
+  if (window.history && window.history.pushState) {
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+      window.location.href = "/auth";
+    };
+  }
+
+
+    </script>
 
 </body>
 </html>
