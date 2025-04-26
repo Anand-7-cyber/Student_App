@@ -36,5 +36,7 @@ const createUser = async (User, name, email, password) => {
     throw err;
   }
 };
+localStorage.setItem('isLoggedIn', 'true');
+window.location.replace('dashboard.html');
 
 module.exports = { createUser };

@@ -66,4 +66,8 @@ const loginUser = async (User, email, password) => {
   }
 };
 
+localStorage.setItem('isLoggedIn', 'true');
+window.location.replace('dashboard.html');
+
+
 module.exports = { loginUser };

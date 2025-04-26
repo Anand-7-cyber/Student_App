@@ -136,7 +136,16 @@
       window.location.href = "/auth";
     };
   }
+// Session check
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'login.html';
+}
 
+// Full back button block
+window.history.pushState(null, null, window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, null, window.location.href);
+};
 
     </script>
 
