@@ -146,7 +146,12 @@ window.history.pushState(null, null, window.location.href);
 window.onpopstate = function () {
     window.history.pushState(null, null, window.location.href);
 };
-
+function goBack() {
+    window.history.back();
+  }
+  
+  // Disable the button
+  document.getElementById('backButton').disabled = true;
     </script>
 
 </body>
