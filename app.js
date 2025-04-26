@@ -105,7 +105,7 @@ app.get('/logout', (req, res) => {
 app.get('/user-info', (req, res) => {
   if (!req.session.user) return res.status(401).json({ message: 'Not logged in' });
 
-  const query = 'SELECT name, email FROM usersmain WHERE id = ?';
+  const query = 'SELECT name, email FROM if0_38815680_usersmain WHERE id = ?';
   db.query(query, [req.session.user.id], (err, results) => {
     if (err) return res.status(500).json({ message: 'DB error' });
     if (results.length === 0) return res.status(404).json({ message: 'User not found' });

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const loginUser = async (db, email, password) => {
   try {
     // Step 1: Find user by email
-    const [results] = await db.promise().query('SELECT * FROM usersmain WHERE email = ?', [email]);
+    const [results] = await db.promise().query('SELECT * FROM if0_38815680_usersmain WHERE email = ?', [email]);
 
     // Step 2: If user found, compare password
     if (results.length === 0) {
