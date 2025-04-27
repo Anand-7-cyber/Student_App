@@ -1,5 +1,5 @@
 {
-    "name": "my-cf-worker",
+    "name": "mindora",
     "compatibility_date": "2025-04-20",
     "assets": {
       "directory": "./public"
